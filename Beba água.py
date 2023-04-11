@@ -1,6 +1,5 @@
 import time
-from win10toast import ToastNotifier
-import datetime
+from win11toast import toast
 
 def Definição():
     Hora = int(input("Quantas horas de intervalo: "))
@@ -9,16 +8,9 @@ def Definição():
     time_interval = Segundos+(Minutos*60)+(Hora*3600)
     return time_interval
 
-def Anotação():
-    now = datetime.datetime.now()
-    start_time = now.strftime("%H:%M:%S")
-    with open("log.txt", "a") as f:
-        f.write(f"Você bebeu água {now} \n")
-
 def Notificação():
-    notificação = ToastNotifier()
-    notificação.show_toast("Hora de beber água")
-    Anotação()
+    toast("BEBA ÁGUA", "Está na hora de beber água", icon="https://cdn-icons-png.flaticon.com/128/1079/1079119.png", audio='ms-winsoundevent:Notification.Looping.Alarm',
+          buttons=["OK"])
 
 def starttime(time_interval):
     while True:
